@@ -44,7 +44,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     /**
      * Filter entities who's not consistent
      *
-     * @return array
+     * @return self
      */
     public function getConsistentEntities()
     {

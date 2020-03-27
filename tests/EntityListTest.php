@@ -138,6 +138,21 @@ class EntityListTest extends TestCase
         $this->assertTrue(isset($entityList[0]));
     }
 
+    /** @test */
+    public function can_get_entity()
+    {
+        $entity = $this->makeEntity([
+            'name' => 'First',
+            'age' => 25,
+        ]);
+
+        $entityList = $this->makeGoodEntityList([$entity]);
+
+        $entityGrab = $entityList[0];
+
+        $this->assertEquals($entity, $entityGrab);
+    }
+
     /**
      * @param array $entities
      * @return \Alchemistery\EntityList
