@@ -54,6 +54,18 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     }
 
     /**
+     * Filter entities who's consistent
+     *
+     * @return self
+     */
+    public function getInconsistentEntities()
+    {
+        return array_filter($this->entities, function (Entity $entity) {
+            return ! $entity->isConsistent();
+        });
+    }    
+
+    /**
      * @param mixed $offset
      * @return bool
      */
