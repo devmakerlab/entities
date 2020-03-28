@@ -80,6 +80,7 @@ class EntityListTest extends TestCase
         $this->assertContains($unconsistentEntity, $entityList->getInconsistentEntities());
     }    
 
+    /** @test */
     public function can_add_entity()
     {
         $firstEntity = $this->makeEntity([
@@ -100,7 +101,7 @@ class EntityListTest extends TestCase
         $entityList = $this->makeGoodEntityList([$firstEntity]);
 
         $entityList[] = $secondEntity;
-        $entityList[5] = $thirdEntity;
+        $entityList[2] = $thirdEntity;
 
         $this->assertCount(3, $entityList);
         $this->assertContains($firstEntity, $entityList);
