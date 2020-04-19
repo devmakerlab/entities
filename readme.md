@@ -33,9 +33,9 @@ $human = new Human([
     'age' => 42,
 ]);
 
-$human->name // Bob
-$human->age // 42
-$human->isConsistent(); // true
+echo $human->name; // Bob
+echo $human->age; // 42
+echo $human->isConsistent(); // true
 ```
 
 Create your entity list like this :
@@ -77,7 +77,7 @@ $jane = new Human(['name' => 'Jane', 'age' => 31]);
 $people = new People([$bob, $junior]);
 $people[] = $jane;
 
-$people[0]->name // Bob
-$people[1]->name // Junior
-$people->getYoungest()->name // Junior
+echo $people[0]->name; // Bob
+echo $people[1]->name; // Junior
+echo $people->getYoungest()->name; // Junior
 ```
