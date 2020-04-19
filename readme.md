@@ -1,4 +1,4 @@
-# alchemistery/entities
+# drkwi/entities
 
 [![Build Status](https://travis-ci.org/drkwi/entities.svg?branch=master)](https://travis-ci.org/drkwi/entities)
 [![Code Coverage](https://scrutinizer-ci.com/g/drkwi/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drkwi/entities/?branch=master)
