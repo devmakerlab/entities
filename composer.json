@@ -1,5 +1,5 @@
 {
-    "name": "alchemistery/entities",
+    "name": "drkwi/entities",
     "type": "library",
     "description": "Work with entities from your services or repositories.",
     "license": "MIT",
