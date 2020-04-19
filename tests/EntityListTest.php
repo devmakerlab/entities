@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use Alchemistery\Entity;
-use Alchemistery\EntityList;
-use Alchemistery\UnexpectedEntityException;
+use Entities\Entity;
+use Entities\EntityList;
+use Entities\UnexpectedEntityException;
 use PHPUnit\Framework\TestCase;
 
 class EntityListTest extends TestCase
@@ -173,7 +173,7 @@ class EntityListTest extends TestCase
 
     /**
      * @param array $entities
-     * @return \Alchemistery\EntityList
+     * @return \Entities\EntityList
      */
     protected function makeGoodEntityList(array $entities)
     {
@@ -187,7 +187,7 @@ class EntityListTest extends TestCase
 
     /**
      * @param array $entities
-     * @return \Alchemistery\EntityList
+     * @return \Entities\EntityList
      */
     protected function makeBadEntityList(array $entities)
     {
@@ -201,7 +201,7 @@ class EntityListTest extends TestCase
 
     /**
      * @param array $attributes
-     * @return \Alchemistery\Entity
+     * @return \Entities\Entity
      */
     protected function makeEntity(array $attributes)
     {

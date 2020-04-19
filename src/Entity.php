@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemistery;
+namespace Entities;
 
 abstract class Entity
 {

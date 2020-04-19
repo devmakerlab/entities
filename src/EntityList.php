@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemistery;
+namespace Entities;
 
 use Countable;
 use ArrayAccess;
@@ -18,7 +18,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
      * EntityList constructor.
      *
      * @param array $entities
-     * @throws \Alchemistery\UnexpectedEntityException
+     * @throws \Entities\UnexpectedEntityException
      */
     public function __construct(array $entities)
     {
@@ -36,7 +36,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     /**
      * True if given entity has expected type
      *
-     * @param \Alchemistery\Entity $entity
+     * @param \Entities\Entity $entity
      * @return bool
      */
     abstract protected function hasExceptedType(Entity $entity) : bool;
@@ -86,7 +86,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     /**
      * @param mixed $offset
      * @param $entity
-     * @throws \Alchemistery\UnexpectedEntityException
+     * @throws \Entities\UnexpectedEntityException
      */
     public function offsetSet($offset, $entity)
     {

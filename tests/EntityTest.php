@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Alchemistery\Entity;
+use Entities\Entity;
 use PHPUnit\Framework\TestCase;
 
 class EntityTest extends TestCase
@@ -43,7 +43,7 @@ class EntityTest extends TestCase
 
     /**
      * @param array $attributes
-     * @return \Alchemistery\Entity
+     * @return \Entities\Entity
      */
     protected function makeEntity(array $attributes)
     {
