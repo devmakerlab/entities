@@ -39,7 +39,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
      * @param \Entities\Entity $entity
      * @return bool
      */
-    abstract protected function hasExceptedType(Entity $entity) : bool;
+    abstract protected function hasExceptedType(Entity $entity);
 
     /**
      * Filter entities who's not consistent
@@ -118,7 +118,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     }
 
     /**
-     * @return \ArrayIterator|\Traversable
+     * @return \ArrayIterator
      */
     public function getIterator()
     {

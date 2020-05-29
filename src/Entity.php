@@ -12,7 +12,7 @@ abstract class Entity
     public function __construct(array $attributes)
     {
         foreach (get_object_vars($this) as $key => $value) {
-            $this->$key = $attributes[$key] ?? null; 
+            $this->$key = isset($attributes[$key]) ? $attributes[$key] : null;
         }
     }
 
@@ -21,5 +21,5 @@ abstract class Entity
      *
      * @return bool
      */
-    abstract public function isConsistent() : bool;
+    abstract public function isConsistent();
 }

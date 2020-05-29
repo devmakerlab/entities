@@ -12,15 +12,15 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_make_entity_list()
     {
-        $entityJohn = $this->makeEntity([
+        $entityJohn = new Hooman([
             'name' => 'John',
         ]);
 
-        $entityBob = $this->makeEntity([
+        $entityBob = new Hooman([
             'name' => 'Bob',
         ]);
 
-        $entityList = $this->makeGoodEntityList([$entityJohn]);
+        $entityList = new People([$entityJohn]);
 
         $entityList[] = $entityBob;
 
@@ -31,32 +31,32 @@ class EntityListTest extends TestCase
     }
 
     /** @test */
-    public function can_make_an_expected_entity_list()
+    public function cant_make_an_unexpected_entity_list()
     {
         $attributes = [
-            'name' => 'Walter Hartwell White',
+            'name' => 'Zeus',
         ];
 
-        $entity = $this->makeEntity($attributes);
+        $entity = new God($attributes);
 
         $this->expectException(UnexpectedEntityException::class);
 
-        $this->makeBadEntityList([$entity]);
+        new People([$entity]);
     }
 
     /** @test */
     public function can_have_consistent_entities_only()
     {
-        $consistentEntity = $this->makeEntity([
+        $consistentEntity = new Hooman([
             'name' => 'John',
             'age' => 25,
         ]);
 
-        $unconsistentEntity = $this->makeEntity([
+        $unconsistentEntity = new Hooman([
             'name' => 'Bob',
         ]);
 
-        $entityList = $this->makeGoodEntityList([$consistentEntity, $unconsistentEntity]);
+        $entityList = new People([$consistentEntity, $unconsistentEntity]);
 
         $this->assertCount(1, $entityList->getConsistentEntities());
         $this->assertContains($consistentEntity, $entityList->getConsistentEntities());
@@ -65,16 +65,16 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_get_inconsistent_entities_only()
     {
-        $consistentEntity = $this->makeEntity([
+        $consistentEntity = new Hooman([
             'name' => 'John',
             'age' => 25,
         ]);
 
-        $unconsistentEntity = $this->makeEntity([
+        $unconsistentEntity = new Hooman([
             'name' => 'Bob',
         ]);
 
-        $entityList = $this->makeGoodEntityList([$consistentEntity, $unconsistentEntity]);
+        $entityList = new People([$consistentEntity, $unconsistentEntity]);
 
         $this->assertCount(1, $entityList->getInconsistentEntities());
         $this->assertContains($unconsistentEntity, $entityList->getInconsistentEntities());
@@ -83,22 +83,22 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_add_entity()
     {
-        $firstEntity = $this->makeEntity([
+        $firstEntity = new Hooman([
             'name' => 'First',
             'age' => 25,
         ]);
 
-        $secondEntity = $this->makeEntity([
+        $secondEntity = new Hooman([
             'name' => 'Second',
             'age' => 25,
         ]);
 
-        $thirdEntity = $this->makeEntity([
+        $thirdEntity = new Hooman([
             'name' => 'Third',
             'age' => 25,
         ]);
 
-        $entityList = $this->makeGoodEntityList([$firstEntity]);
+        $entityList = new People([$firstEntity]);
 
         $entityList[] = $secondEntity;
         $entityList[2] = $thirdEntity;
@@ -112,12 +112,12 @@ class EntityListTest extends TestCase
     /** @test */
     public function cant_add_unexpected_entity()
     {
-        $entity = $this->makeEntity([
+        $entity = new God([
             'name' => 'First',
             'age' => 25,
         ]);
 
-        $entityList = $this->makeBadEntityList([]);
+        $entityList = new People([]);
 
         $this->expectException(UnexpectedEntityException::class);
 
@@ -127,12 +127,12 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_remove_entity()
     {
-        $entity = $this->makeEntity([
+        $entity = new Hooman([
             'name' => 'First',
             'age' => 25,
         ]);
 
-        $entityList = $this->makeGoodEntityList([$entity]);
+        $entityList = new People([$entity]);
 
         unset($entityList[0]);
 
@@ -142,12 +142,12 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_check_entity()
     {
-        $entity = $this->makeEntity([
+        $entity = new Hooman([
             'name' => 'First',
             'age' => 25,
         ]);
 
-        $entityList = $this->makeGoodEntityList([]);
+        $entityList = new People([]);
 
         $this->assertFalse(isset($entityList[0]));
 
@@ -159,60 +159,15 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_get_entity()
     {
-        $entity = $this->makeEntity([
+        $entity = new Hooman([
             'name' => 'First',
             'age' => 25,
         ]);
 
-        $entityList = $this->makeGoodEntityList([$entity]);
+        $entityList = new People([$entity]);
 
         $entityGrab = $entityList[0];
 
         $this->assertEquals($entity, $entityGrab);
-    }
-
-    /**
-     * @param array $entities
-     * @return \Entities\EntityList
-     */
-    protected function makeGoodEntityList(array $entities)
-    {
-        return new class($entities) extends EntityList {
-            protected function hasExceptedType(Entity $entity): bool
-            {
-                return true;
-            }
-        };
-    }
-
-    /**
-     * @param array $entities
-     * @return \Entities\EntityList
-     */
-    protected function makeBadEntityList(array $entities)
-    {
-        return new class($entities) extends EntityList {
-            protected function hasExceptedType(Entity $entity): bool
-            {
-                return false;
-            }
-        };
-    }
-
-    /**
-     * @param array $attributes
-     * @return \Entities\Entity
-     */
-    protected function makeEntity(array $attributes)
-    {
-        return new class($attributes) extends Entity {
-            public $name;
-            public $age;
-
-            public function isConsistent(): bool
-            {
-                return ! is_null($this->name) && ! is_null($this->age);
-            }
-        };
     }
 }

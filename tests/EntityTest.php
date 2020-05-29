@@ -17,7 +17,7 @@ class EntityTest extends TestCase
             'nickname' => 'Heisenberg',
         ];
 
-        $entity = $this->makeEntity($attributes);
+        $entity = new Hooman($attributes);
 
         $this->assertInstanceOf(Entity::class, $entity);
         $this->assertEquals($attributes['name'], $entity->name);
@@ -35,28 +35,9 @@ class EntityTest extends TestCase
             'name' => 'Casper',
         ];
 
-        $entity = $this->makeEntity($attributes);
+        $entity = new Hooman($attributes);
 
         $this->assertInstanceOf(Entity::class, $entity);
         $this->assertFalse($entity->isConsistent());
-    }
-
-    /**
-     * @param array $attributes
-     * @return \Entities\Entity
-     */
-    protected function makeEntity(array $attributes)
-    {
-        return new class($attributes) extends Entity {
-            public $name;
-            public $age;
-            public $job;
-            public $country;
-
-            public function isConsistent(): bool
-            {
-                return ! is_null($this->name) && ! is_null($this->age);
-            }
-        };
     }
 }
