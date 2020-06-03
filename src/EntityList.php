@@ -56,9 +56,11 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
      */
     public function getConsistentEntities()
     {
-        return array_filter($this->entities, function (Entity $entity) {
+        $consistentEntities = array_filter($this->entities, function (Entity $entity) {
             return $entity->isConsistent();
         });
+
+        return new static($consistentEntities);
     }
 
     /**
@@ -68,9 +70,11 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
      */
     public function getInconsistentEntities()
     {
-        return array_filter($this->entities, function (Entity $entity) {
+        $inconsistentEntities = array_filter($this->entities, function (Entity $entity) {
             return ! $entity->isConsistent();
         });
+
+        return new static($inconsistentEntities);
     }    
 
     /**

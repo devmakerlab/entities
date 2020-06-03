@@ -60,8 +60,11 @@ class EntityListTest extends TestCase
 
         $entityList = new People([$consistentEntity, $unconsistentEntity]);
 
-        $this->assertCount(1, $entityList->getConsistentEntities());
-        $this->assertContains($consistentEntity, $entityList->getConsistentEntities());
+        $consistentEntityList = $entityList->getConsistentEntities();
+
+        $this->assertInstanceOf(People::class, $consistentEntityList);
+        $this->assertCount(1, $consistentEntityList);
+        $this->assertContains($consistentEntity, $consistentEntityList);
     }
 
     /** @test */
@@ -78,8 +81,11 @@ class EntityListTest extends TestCase
 
         $entityList = new People([$consistentEntity, $unconsistentEntity]);
 
-        $this->assertCount(1, $entityList->getInconsistentEntities());
-        $this->assertContains($unconsistentEntity, $entityList->getInconsistentEntities());
+        $inconsistentEntityList = $entityList->getInconsistentEntities();
+
+        $this->assertInstanceOf(People::class, $inconsistentEntityList);
+        $this->assertCount(1, $inconsistentEntityList);
+        $this->assertContains($unconsistentEntity, $inconsistentEntityList);
     }    
 
     /** @test */
