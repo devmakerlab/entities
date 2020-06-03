@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Artifacts;
 
 use Entities\Entity;
 use Entities\EntityList;

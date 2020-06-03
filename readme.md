@@ -11,7 +11,7 @@ This package provide a way to implements entities. Useful for your services or r
 Create your entity in dedicated class :
 
 ```php
-use Alchemistery\Entity;
+use Entities\Entity;
 
 class Human extends Entity
 {
@@ -41,16 +41,16 @@ echo $human->isConsistent(); // true
 Create your entity list like this :
 
 ```php
-use Alchemistery\EntityList;
+use Entities\EntityList;
 
 class People extends EntityList
 {
-    public function hasExpectedType(Entity $entity): bool
+    public function hasExpectedType(Entity $entity)
     {
         return $entity instanceof Human::class;
     }
 
-    public function getYoungest(): Human
+    public function getYoungest()
     {
         $consistentPeople = $this->getConsistentEntities();
         

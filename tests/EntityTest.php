@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Entities\Entity;
+use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;
 
 class EntityTest extends TestCase

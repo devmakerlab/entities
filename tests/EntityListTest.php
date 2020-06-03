@@ -2,10 +2,12 @@
 
 namespace Tests;
 
-use Entities\Entity;
 use Entities\EntityList;
-use Entities\UnexpectedEntityException;
+use Tests\Artifacts\God;
+use Tests\Artifacts\Hooman;
+use Tests\Artifacts\People;
 use PHPUnit\Framework\TestCase;
+use Entities\UnexpectedEntityException;
 
 class EntityListTest extends TestCase
 {
