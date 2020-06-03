@@ -18,7 +18,7 @@ class Human extends Entity
     public $name;
     public $age;
 
-    public function isConsistent(): bool
+    public function isConsistent()
     {
         return ! is_null($this->name) && ! is_null($this->age);
     }
@@ -45,10 +45,7 @@ use Entities\EntityList;
 
 class People extends EntityList
 {
-    public function hasExpectedType(Entity $entity)
-    {
-        return $entity instanceof Human::class;
-    }
+    protected $expectedType = Human::class;
 
     public function getYoungest()
     {

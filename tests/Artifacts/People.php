@@ -2,19 +2,12 @@
 
 namespace Tests\Artifacts;
 
-use Entities\Entity;
 use Entities\EntityList;
 
 class People extends EntityList
 {
     /**
-     * True if given entity has expected type
-     *
-     * @param \Entities\Entity $entity
-     * @return bool
+     * @var string
      */
-    protected function hasExceptedType(Entity $entity)
-    {
-        return $entity instanceof Hooman;
-    }
+    protected $expectedType = Hooman::class;
 }

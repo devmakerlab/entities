@@ -15,6 +15,11 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     protected $entities = [];
 
     /**
+     * @var string
+     */
+    protected $expectedType;
+
+    /**
      * EntityList constructor.
      *
      * @param array $entities
@@ -39,7 +44,10 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
      * @param \Entities\Entity $entity
      * @return bool
      */
-    abstract protected function hasExceptedType(Entity $entity);
+    protected function hasExceptedType(Entity $entity)
+    {
+        return $entity instanceof $this->expectedType;
+    }
 
     /**
      * Filter entities who's not consistent
