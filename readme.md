@@ -1,8 +1,8 @@
 # drkwi/entities
 
-[![Build Status](https://travis-ci.org/drkwi/entities.svg?branch=master)](https://travis-ci.org/drkwi/entities)
-[![Code Coverage](https://scrutinizer-ci.com/g/drkwi/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drkwi/entities/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/drkwi/entities/v/stable)](https://packagist.org/packages/drkwi/entities)
+[![Build Status](https://travis-ci.org/thephplab/entities.svg?branch=master)](https://travis-ci.org/drkwi/entities)
+[![Code Coverage](https://scrutinizer-ci.com/g/thephplab/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drkwi/entities/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/thephplab/entities/v/stable)](https://packagist.org/packages/drkwi/entities)
 
 This package provide a way to implements entities. Useful for your services or repositories.
 
