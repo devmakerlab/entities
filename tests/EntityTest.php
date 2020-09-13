@@ -59,7 +59,7 @@ class EntityTest extends TestCase
         $oneYearLater = [
             'age' => 25,
             'job' => 'Alchemist',
-            'nickname' => 'Cap \'n Cook',
+            'nickname' => "Cap 'n Cook",
         ];
 
         $entity->update($oneYearLater);

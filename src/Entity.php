@@ -11,9 +11,7 @@ abstract class Entity
      */
     public function __construct(array $attributes)
     {
-        foreach (get_object_vars($this) as $key => $value) {
-            $this->$key = isset($attributes[$key]) ? $attributes[$key] : null;
-        }
+        $this->setAttributes($attributes);
     }
 
     /**
@@ -31,10 +29,18 @@ abstract class Entity
      */
     public function update(array $attributes)
     {
-        foreach ($attributes as $key => $value) {
-            if (isset($this->$key)) {
-                $this->$key = $value;
-            }
+        $this->setAttributes($attributes);
+    }
+
+    /**
+     * Set entity's attributes
+     *
+     * @param array $attributes
+     */
+    private function setAttributes(array $attributes)
+    {
+        foreach (get_object_vars($this) as $key => $value) {
+            $this->$key = isset($attributes[$key]) ? $attributes[$key] : $this->$key;
         }
     }
 }
