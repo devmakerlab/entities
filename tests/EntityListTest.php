@@ -32,6 +32,8 @@ class EntityListTest extends TestCase
         $this->assertCount(2, $entityList);
         $this->assertContains($entityBob, $entityList);
         $this->assertContains($entityJohn, $entityList);
+        $this->assertCount(2, $entityList->getConsistentEntities());
+        $this->assertCount(0, $entityList->getInconsistentEntities());
     }
 
     /** @test */
