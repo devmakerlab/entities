@@ -9,22 +9,10 @@ use IteratorAggregate;
 
 abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
 {
-    /**
-     * @var array
-     */
-    protected $entities = [];
+    protected array $entities = [];
 
-    /**
-     * @var string
-     */
-    protected $expectedType;
+    protected string $expectedType;
 
-    /**
-     * EntityList constructor.
-     *
-     * @param array $entities
-     * @throws \Entities\UnexpectedEntityException
-     */
     public function __construct(array $entities)
     {
         foreach ($entities as $entity) {
@@ -38,24 +26,12 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
         }
     }
 
-    /**
-     * True if given entity has expected type
-     *
-     * @param \Entities\Entity $entity
-     * @return bool
-     */
-    protected function hasExceptedType(Entity $entity)
+    public function getConsistentEntities(): self
     {
-        return $entity instanceof $this->expectedType;
-    }
+        if ($this->notUseConsistency()) {
+            return $this;
+        }
 
-    /**
-     * Filter entities who's not consistent
-     *
-     * @return static
-     */
-    public function getConsistentEntities()
-    {
         $consistentEntities = array_filter($this->entities, function (Entity $entity) {
             return $entity->isConsistent();
         });
@@ -63,19 +39,28 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
         return new static($consistentEntities);
     }
 
-    /**
-     * Filter entities who's consistent
-     *
-     * @return static
-     */
-    public function getInconsistentEntities()
+    public function getInconsistentEntities(): self
     {
+        if ($this->notUseConsistency()) {
+            return new static([]);
+        }
+
         $inconsistentEntities = array_filter($this->entities, function (Entity $entity) {
             return ! $entity->isConsistent();
         });
 
         return new static($inconsistentEntities);
-    }    
+    }
+
+    protected function hasExceptedType(Entity $entity): bool
+    {
+        return $entity instanceof $this->expectedType;
+    }
+
+    protected function notUseConsistency(): bool
+    {
+        return ! in_array(Consistency::class, class_uses($this->expectedType), true);
+    }
 
     /**
      * @param mixed $offset

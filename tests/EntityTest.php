@@ -5,6 +5,7 @@ namespace Tests;
 use Entities\Entity;
 use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;
+use Tests\Artifacts\SuperCat;
 
 class EntityTest extends TestCase
 {
@@ -26,19 +27,29 @@ class EntityTest extends TestCase
         $this->assertEquals($attributes['job'], $entity->job);
         $this->assertNull($entity->country);
         $this->assertObjectNotHasAttribute('nickname', $entity);
-        $this->assertTrue($entity->isConsistent());
     }
 
     /** @test */
-    public function can_have_an_inconsistent_entity()
+    public function can_make_a_consistent_entity()
     {
         $attributes = [
-            'name' => 'Casper',
+            'name' => 'Grumpy Cat',
+            'power' => 'Grumpy',
         ];
 
-        $entity = new Hooman($attributes);
+        $entity = new SuperCat($attributes);
 
         $this->assertInstanceOf(Entity::class, $entity);
+        $this->assertEquals($attributes['name'], $entity->name);
+        $this->assertEquals($attributes['power'], $entity->power);
+        $this->assertTrue($entity->isConsistent());
+
+        $attributes = [
+            'name' => 'Not a super cat',
+        ];
+
+        $entity = new SuperCat($attributes);
+
         $this->assertFalse($entity->isConsistent());
     }
 

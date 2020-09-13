@@ -10,9 +10,4 @@ class Hooman extends Entity
     public $age;
     public $job;
     public $country;
-
-    public function isConsistent()
-    {
-        return ! is_null($this->name) && ! is_null($this->age);
-    }
 }

@@ -3,11 +3,13 @@
 namespace Tests;
 
 use Entities\EntityList;
+use Tests\Artifacts\CatGang;
 use Tests\Artifacts\God;
 use Tests\Artifacts\Hooman;
 use Tests\Artifacts\People;
 use PHPUnit\Framework\TestCase;
 use Entities\UnexpectedEntityException;
+use Tests\Artifacts\SuperCat;
 
 class EntityListTest extends TestCase
 {
@@ -30,6 +32,8 @@ class EntityListTest extends TestCase
         $this->assertCount(2, $entityList);
         $this->assertContains($entityBob, $entityList);
         $this->assertContains($entityJohn, $entityList);
+        $this->assertCount(2, $entityList->getConsistentEntities());
+        $this->assertCount(0, $entityList->getInconsistentEntities());
     }
 
     /** @test */
@@ -49,41 +53,41 @@ class EntityListTest extends TestCase
     /** @test */
     public function can_have_consistent_entities_only()
     {
-        $consistentEntity = new Hooman([
-            'name' => 'John',
-            'age' => 25,
+        $consistentEntity = new SuperCat([
+            'name' => 'Grumpy Cat',
+            'power' => 'Grumpy',
         ]);
 
-        $unconsistentEntity = new Hooman([
-            'name' => 'Bob',
+        $unconsistentEntity = new SuperCat([
+            'name' => 'Random Cat',
         ]);
 
-        $entityList = new People([$consistentEntity, $unconsistentEntity]);
+        $entityList = new CatGang([$consistentEntity, $unconsistentEntity]);
 
         $consistentEntityList = $entityList->getConsistentEntities();
 
-        $this->assertInstanceOf(People::class, $consistentEntityList);
+        $this->assertInstanceOf(CatGang::class, $consistentEntityList);
         $this->assertCount(1, $consistentEntityList);
         $this->assertContains($consistentEntity, $consistentEntityList);
     }
 
     /** @test */
-    public function can_get_inconsistent_entities_only()
+    public function can_have_inconsistent_entities_only()
     {
-        $consistentEntity = new Hooman([
-            'name' => 'John',
-            'age' => 25,
+        $consistentEntity = new SuperCat([
+            'name' => 'Grumpy Cat',
+            'power' => 'Grumpy',
         ]);
 
-        $unconsistentEntity = new Hooman([
-            'name' => 'Bob',
+        $unconsistentEntity = new SuperCat([
+            'name' => 'Random Cat',
         ]);
 
-        $entityList = new People([$consistentEntity, $unconsistentEntity]);
+        $entityList = new CatGang([$consistentEntity, $unconsistentEntity]);
 
         $inconsistentEntityList = $entityList->getInconsistentEntities();
 
-        $this->assertInstanceOf(People::class, $inconsistentEntityList);
+        $this->assertInstanceOf(CatGang::class, $inconsistentEntityList);
         $this->assertCount(1, $inconsistentEntityList);
         $this->assertContains($unconsistentEntity, $inconsistentEntityList);
     }    
