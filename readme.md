@@ -17,11 +17,6 @@ class Human extends Entity
 {
     public $name;
     public $age;
-
-    public function isConsistent()
-    {
-        return ! is_null($this->name) && ! is_null($this->age);
-    }
 }
 ```
 
@@ -35,7 +30,6 @@ $human = new Human([
 
 echo $human->name; // Bob
 echo $human->age; // 42
-echo $human->isConsistent(); // true
 ```
 
 Create your entity list like this :
@@ -45,13 +39,13 @@ use Entities\EntityList;
 
 class People extends EntityList
 {
-    protected $expectedType = Human::class;
+    protected string $expectedType = Human::class;
 
-    public function getYoungest()
-    {
-        $consistentPeople = $this->getConsistentEntities();
-        
-        uasort($consistentPeople, function ($a, $b) {
+    public function getYoungest(): Human
+    {       
+        $entities = $this->entities;
+
+        uasort($entities, function ($a, $b) {
             if ($a->age === $b->age) {
                 return 0;
             }
@@ -59,7 +53,7 @@ class People extends EntityList
             return ($a > $b) ? -1 : 1;
         });
 
-        return array_pop($consistentPeople);
+        return array_pop($entities);
     }
 }
 ```

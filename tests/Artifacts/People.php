@@ -6,8 +6,5 @@ use Entities\EntityList;
 
 class People extends EntityList
 {
-    /**
-     * @var string
-     */
-    protected $expectedType = Hooman::class;
+    protected string $expectedType = Hooman::class;
 }
