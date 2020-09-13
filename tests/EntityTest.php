@@ -52,4 +52,32 @@ class EntityTest extends TestCase
 
         $this->assertFalse($entity->isConsistent());
     }
+
+    /** @test */
+    public function can_update_an_entity()
+    {
+        $attributes = [
+            'name' => 'Jesse Bruce Pinkman',
+            'age' => 24,
+            'job' => 'Dealer',
+            'nickname' => 'none',
+        ];
+
+        $entity = new Hooman($attributes);
+
+        $this->assertInstanceOf(Entity::class, $entity);
+
+        $oneYearLater = [
+            'age' => 25,
+            'job' => 'Alchemist',
+            'nickname' => "Cap 'n Cook",
+        ];
+
+        $entity->update($oneYearLater);
+
+        $this->assertObjectNotHasAttribute('nickname', $entity);
+        $this->assertEquals($oneYearLater['age'], $entity->age);
+        $this->assertEquals($oneYearLater['job'], $entity->job);
+        $this->assertEquals($attributes['name'], $entity->name);
+    }
 }
