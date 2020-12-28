@@ -16,7 +16,7 @@ abstract class Entity
 
     private function setAttributes(array $attributes): void
     {
-        foreach (get_object_vars($this) as $key => $value) {
+        foreach (get_class_vars(static::class) as $key => $value) {
             $this->$key = isset($attributes[$key]) ? $attributes[$key] : $this->$key;
         }
     }
