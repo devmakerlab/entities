@@ -5,7 +5,6 @@ namespace Tests;
 use Entities\Entity;
 use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;
-use Tests\Artifacts\SuperCat;
 
 class EntityTest extends TestCase
 {
@@ -19,38 +18,14 @@ class EntityTest extends TestCase
             'nickname' => 'Heisenberg',
         ];
 
-        $entity = new Hooman($attributes);
+        $hooman = new Hooman($attributes);
 
-        $this->assertInstanceOf(Entity::class, $entity);
-        $this->assertEquals($attributes['name'], $entity->name);
-        $this->assertEquals($attributes['age'], $entity->age);
-        $this->assertEquals($attributes['job'], $entity->job);
-        $this->assertNull($entity->country);
-        $this->assertObjectNotHasAttribute('nickname', $entity);
-    }
-
-    /** @test */
-    public function can_make_a_consistent_entity()
-    {
-        $attributes = [
-            'name' => 'Grumpy Cat',
-            'power' => 'Grumpy',
-        ];
-
-        $entity = new SuperCat($attributes);
-
-        $this->assertInstanceOf(Entity::class, $entity);
-        $this->assertEquals($attributes['name'], $entity->name);
-        $this->assertEquals($attributes['power'], $entity->power);
-        $this->assertTrue($entity->isConsistent());
-
-        $attributes = [
-            'name' => 'Not a super cat',
-        ];
-
-        $entity = new SuperCat($attributes);
-
-        $this->assertFalse($entity->isConsistent());
+        $this->assertInstanceOf(Entity::class, $hooman);
+        $this->assertEquals($attributes['name'], $hooman->name);
+        $this->assertEquals($attributes['age'], $hooman->age);
+        $this->assertEquals($attributes['job'], $hooman->job);
+        $this->assertNull($hooman->country);
+        $this->assertObjectNotHasAttribute('nickname', $hooman);
     }
 
     /** @test */
@@ -63,9 +38,9 @@ class EntityTest extends TestCase
             'nickname' => 'none',
         ];
 
-        $entity = new Hooman($attributes);
+        $hooman = new Hooman($attributes);
 
-        $this->assertInstanceOf(Entity::class, $entity);
+        $this->assertInstanceOf(Entity::class, $hooman);
 
         $oneYearLater = [
             'age' => 25,
@@ -73,11 +48,11 @@ class EntityTest extends TestCase
             'nickname' => "Cap 'n Cook",
         ];
 
-        $entity->update($oneYearLater);
+        $hooman->update($oneYearLater);
 
-        $this->assertObjectNotHasAttribute('nickname', $entity);
-        $this->assertEquals($oneYearLater['age'], $entity->age);
-        $this->assertEquals($oneYearLater['job'], $entity->job);
-        $this->assertEquals($attributes['name'], $entity->name);
+        $this->assertObjectNotHasAttribute('nickname', $hooman);
+        $this->assertEquals($oneYearLater['age'], $hooman->age);
+        $this->assertEquals($oneYearLater['job'], $hooman->job);
+        $this->assertEquals($attributes['name'], $hooman->name);
     }
 }

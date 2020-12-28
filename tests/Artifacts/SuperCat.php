@@ -2,13 +2,10 @@
 
 namespace Tests\Artifacts;
 
-use Entities\Entity;
-use Entities\Consistency;
+use Entities\ConsistentEntity;
 
-class SuperCat extends Entity
+class SuperCat extends ConsistentEntity
 {
-    use Consistency;
-
     public $name;
     public $power;
 }
