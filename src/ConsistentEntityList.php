@@ -6,19 +6,19 @@ use Entities\Exceptions\UnexpectedEntityException;
 
 abstract class ConsistentEntityList extends EntityList
 {
-    protected string $expectedType;
+    protected string $entity;
 
-    public function push(Entity $entity, $offset = null): void
+    public function add(Entity $entity, $offset = null): void
     {
         if ($this->hasUnexpectedType($entity)) {
             throw new UnexpectedEntityException();
         }
 
-        parent::push($entity, $offset);
+        parent::add($entity, $offset);
     }
 
     protected function hasUnexpectedType(Entity $entity): bool
     {
-        return ! $entity instanceof $this->expectedType;
+        return ! $entity instanceof $this->entity;
     }
 }

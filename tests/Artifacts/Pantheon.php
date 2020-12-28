@@ -6,5 +6,5 @@ use Entities\ConsistentEntityList;
 
 class Pantheon extends ConsistentEntityList
 {
-    protected string $expectedType = God::class;
+    protected string $entity = God::class;
 }

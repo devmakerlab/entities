@@ -14,11 +14,11 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     public function __construct(array $entities)
     {
         foreach ($entities as $entity) {
-            $this->push($entity);
+            $this->add($entity);
         }
     }
 
-    public function push(Entity $entity, $offset = null): void
+    public function add(Entity $entity, $offset = null): void
     {
         if (is_null($offset)) {
             $this->entities[] = $entity;
@@ -27,59 +27,37 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
         }
     }
 
-    public function toArray(): array
+    public function all(): array
     {
         return $this->entities;
     }
 
-    /**
-     * @param mixed $offset
-     * @return bool
-     */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->entities);
     }
 
-    /**
-     * @param mixed $offset
-     * @return mixed
-     */
     public function offsetGet($offset)
     {
         return $this->entities[$offset];
     }
 
-    /**
-     * @param mixed $offset
-     * @param $entity
-     * @throws \Entities\Exceptions\UnexpectedEntityException
-     */
-    public function offsetSet($offset, $entity)
+    public function offsetSet($offset, $value)
     {
-        $this->push($entity);
+        $this->add($value, $offset);
     }
 
-    /**
-     * @param mixed $offset
-     */
     public function offsetUnset($offset)
     {
         unset($this->entities[$offset]);
     }
 
-    /**
-     * @return int
-     */
-    public function count()
+    public function count(): int
     {
         return count($this->entities);
     }
 
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->entities);
     }
