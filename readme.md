@@ -39,8 +39,6 @@ use Entities\EntityList;
 
 class People extends EntityList
 {
-    protected string $expectedType = Human::class;
-
     public function getYoungest(): Human
     {       
         $entities = $this->entities;
