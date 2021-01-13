@@ -15,8 +15,8 @@ use Entities\Entity;
 
 class Human extends Entity
 {
-    public $name;
-    public $age;
+    public string $name;
+    public int $age;
 }
 ```
 

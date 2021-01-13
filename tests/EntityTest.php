@@ -24,7 +24,7 @@ class EntityTest extends TestCase
         $this->assertEquals($attributes['name'], $hooman->name);
         $this->assertEquals($attributes['age'], $hooman->age);
         $this->assertEquals($attributes['job'], $hooman->job);
-        $this->assertNull($hooman->country);
+        $this->assertEquals(null, $hooman->country);
         $this->assertObjectNotHasAttribute('nickname', $hooman);
     }
 

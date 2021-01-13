@@ -17,7 +17,9 @@ abstract class Entity
     protected function setAttributes(array $attributes): void
     {
         foreach (get_class_vars(static::class) as $key => $value) {
-            $this->$key = isset($attributes[$key]) ? $attributes[$key] : $this->$key;
+            if (isset($attributes[$key])) {
+                $this->$key = $attributes[$key];
+            }
         }
     }
 }
