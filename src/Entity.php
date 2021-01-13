@@ -14,6 +14,11 @@ abstract class Entity
         $this->setAttributes($attributes);
     }
 
+    public function toArray(): array
+    {
+        return get_object_vars($this);
+    }
+
     protected function setAttributes(array $attributes): void
     {
         foreach (get_class_vars(static::class) as $key => $value) {

@@ -55,4 +55,18 @@ class EntityTest extends TestCase
         $this->assertEquals($oneYearLater['job'], $hooman->job);
         $this->assertEquals($attributes['name'], $hooman->name);
     }
+
+    /** @test */
+    public function can_convert_to_array()
+    {
+        $properties = [
+            'name' => 'Bobby',
+            'age' => 17,
+            'country' => 'Quebec',
+        ];
+
+        $bob = new Hooman($properties);
+
+        $this->assertEquals($properties, $bob->toArray());
+    }
 }
