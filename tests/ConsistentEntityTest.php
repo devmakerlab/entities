@@ -19,6 +19,15 @@ class ConsistentEntityTest extends TestCase
         $this->expectException(UnconsistentEntityException::class);
 
         $cat = new SuperCat($attributes);
+
+        $attributes = [
+            'name' => 'Not a super cat',
+            'power' => 'Sleep',
+        ];
+
+        $this->expectException(UnconsistentEntityException::class);
+
+        $cat = new SuperCat($attributes);
     }
 
     /** @test */
@@ -27,6 +36,7 @@ class ConsistentEntityTest extends TestCase
         $attributes = [
             'name' => 'Grumpy Cat',
             'power' => 'Grumpy',
+            'age' => 20,
         ];
 
         $cat = new SuperCat($attributes);

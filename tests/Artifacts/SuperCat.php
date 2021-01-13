@@ -6,6 +6,7 @@ use Entities\ConsistentEntity;
 
 class SuperCat extends ConsistentEntity
 {
-    public $name;
-    public $power;
+    public string $name;
+    public string $power;
+    public ?int $age = null;
 }

@@ -3,6 +3,7 @@
 namespace Entities;
 
 use Entities\Exceptions\UnconsistentEntityException;
+use ReflectionProperty;
 
 abstract class ConsistentEntity extends Entity
 {
@@ -17,8 +18,9 @@ abstract class ConsistentEntity extends Entity
 
     protected function isConsistent(): bool
     {
-        foreach (get_object_vars($this) as $key => $value) {
-            if (is_null($this->$key)) {
+        foreach (get_class_vars(get_class($this)) as $key => $value) {
+            $property = new ReflectionProperty($this, $key);
+            if (! $property->isInitialized($this) || is_null($this->$key)) {
                 return false;
             }
         }

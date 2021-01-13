@@ -6,8 +6,8 @@ use Entities\Entity;
 
 class Hooman extends Entity
 {
-    public $name;
-    public $age;
-    public $job;
-    public $country;
+    public string $name;
+    public int $age;
+    public string $job;
+    public ?string $country = null;
 }
