@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class EntityListTest extends TestCase
 {
     /** @test */
-    public function can_make_entity_list()
+    public function can_make_entitylist()
     {
         $entityJohn = new Hooman([
             'name' => 'John',
@@ -105,5 +105,38 @@ class EntityListTest extends TestCase
         $entityGrab = $entityList[0];
 
         $this->assertEquals($entity, $entityGrab);
+    }
+
+    /** @test */
+    public function can_convert_entitylist_to_array()
+    {
+        $entities = [
+            new Hooman(['name' => 'First', 'age' => 25]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ];
+
+        $people = new People($entities);
+
+        $expected = [
+            ['name' => 'First', 'age' => 25, 'country' => null],
+            ['name' => 'Second', 'age' => 12, 'country' => null],
+        ];
+
+        $this->assertEquals($expected, $people->toArray());
+    }
+
+    /** @test */
+    public function can_convert_entitylist_to_json()
+    {
+        $entities = [
+            new Hooman(['name' => 'First', 'age' => 25]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ];
+
+        $people = new People($entities);
+
+        $expected = '[{"name":"First","age":25,"country":null},{"name":"Second","age":12,"country":null}]';
+
+        $this->assertEquals($expected, $people->toJson());
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Entities\Entity;
+use Tests\Artifacts\Car;
 use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;
 
@@ -57,7 +58,7 @@ class EntityTest extends TestCase
     }
 
     /** @test */
-    public function can_convert_to_array()
+    public function can_convert_an_entity_to_array()
     {
         $properties = [
             'name' => 'Bobby',
@@ -68,5 +69,59 @@ class EntityTest extends TestCase
         $bob = new Hooman($properties);
 
         $this->assertEquals($properties, $bob->toArray());
+    }
+
+    /** @test */
+    public function can_have_an_entiy_depending_to_another()
+    {
+        $jacky = new Hooman(['name' => 'Jacky', 'age' => 42]);
+        $car = new Car(['name' => 'Renault Tuning', 'owner' => $jacky]);
+
+        $this->assertEquals($jacky, $car->owner);
+    }
+
+    /** @test */
+    public function can_convert_an_entity_with_dependencies_to_array()
+    {
+        $jacky = new Hooman(['name' => 'Jacky', 'age' => 42]);
+        $car = new Car(['name' => 'Renault Tuning', 'owner' => $jacky]);
+
+        $expected = [
+            'name' => 'Renault Tuning',
+            'owner' => [
+                'name' => 'Jacky',
+                'age' => 42,
+                'country' => null,
+            ],
+        ];
+
+        $this->assertEquals($expected, $car->toArray());
+    }
+
+    /** @test */
+    public function can_convert_an_entity_to_json()
+    {
+        $properties = [
+            'name' => 'Bobby',
+            'age' => 17,
+            'country' => 'Quebec',
+        ];
+
+        $bob = new Hooman($properties);
+
+        $expected = '{"name":"Bobby","age":17,"country":"Quebec"}';
+
+        $this->assertEquals($expected, $bob->toJson());
+    }
+
+    /** @test */
+    public function can_convert_an_entity_with_dependencies_to_json()
+    {
+        $jacky = new Hooman(['name' => 'Jacky', 'age' => 42]);
+        $car = new Car(['name' => 'Renault Tuning', 'owner' => $jacky]);
+
+        $expected = '{"name":"Renault Tuning","owner":{"name":"Jacky","age":42,"country":null}}';
+
+        $this->assertEquals($expected, $car->toJson());
     }
 }

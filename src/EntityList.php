@@ -32,6 +32,23 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
         return $this->entities;
     }
 
+    public function count(): int
+    {
+        return count($this->entities);
+    }
+
+    public function toArray(): array
+    {
+        return array_map(function (Entity $entity) {
+            return $entity->toArray();
+        }, $this->entities);
+    }
+
+    public function toJson(int $options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
+
     public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->entities);
@@ -50,11 +67,6 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     public function offsetUnset($offset)
     {
         unset($this->entities[$offset]);
-    }
-
-    public function count(): int
-    {
-        return count($this->entities);
     }
 
     public function getIterator(): ArrayIterator
