@@ -16,7 +16,24 @@ abstract class Entity
 
     public function toArray(): array
     {
-        return get_object_vars($this);
+        $attributes = [];
+
+        foreach (get_object_vars($this) as $key => $value) {
+            if ($value instanceof Entity) {
+                $attributes[$key] = $value->toArray();
+
+                continue;
+            }
+
+            $attributes[$key] = $value;
+        }
+
+        return $attributes;
+    }
+
+    public function toJson(int $options = 0): string
+    {
+        return json_encode($this->toArray(), $options);
     }
 
     protected function setAttributes(array $attributes): void
