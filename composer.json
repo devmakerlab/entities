@@ -4,7 +4,10 @@
     "description": "Work with entities from your services or repositories.",
     "license": "MIT",
     "keywords": [
-        "entity"
+        "entity",
+        "repository",
+        "pattern",
+        "service"
     ],
     "authors": [
         {

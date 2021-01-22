@@ -1,6 +1,6 @@
 # thephplab/entities
 
-[![Build Status](https://travis-ci.org/thephplab/entities.svg?branch=master)](https://travis-ci.org/thephplab/entities)
+[![Run tests](https://github.com/thephplab/entities/workflows/Run%20tests/badge.svg)](https://github.com/thephplab/entities/actions)
 [![Code Coverage](https://scrutinizer-ci.com/g/thephplab/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/thephplab/entities/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/thephplab/entities/v/stable)](https://packagist.org/packages/thephplab/entities)
 
