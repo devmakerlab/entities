@@ -6,6 +6,7 @@ use Entities\Entity;
 use Tests\Artifacts\Car;
 use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;
+use Tests\Artifacts\Train;
 
 class EntityTest extends TestCase
 {
@@ -123,5 +124,34 @@ class EntityTest extends TestCase
         $expected = '{"name":"Renault Tuning","owner":{"name":"Jacky","age":42,"country":null}}';
 
         $this->assertEquals($expected, $car->toJson());
+    }
+
+    /** @test */
+    public function can_convert_an_entity_depending_to_others_in_array()
+    {
+        $passengers = [
+            new Hooman(['name' => 'Jacky', 'age' => 42]),
+            new Hooman(['name' => 'Dora', 'age' => 31]),
+        ];
+
+        $train = new Train(['name' => 'TGV 8874', 'passengers' => $passengers]);
+
+        $expected = [
+            'name' => 'TGV 8874',
+            'passengers' => [
+                [
+                    'name' => 'Jacky',
+                    'age' => 42,
+                    'country' => null,
+                ],
+                [
+                    'name' => 'Dora',
+                    'age' => 31,
+                    'country' => null,
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $train->toArray());
     }
 }

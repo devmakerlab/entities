@@ -2,6 +2,8 @@
 
 namespace Entities;
 
+use ArrayAccess;
+
 abstract class Entity
 {
     public function __construct(array $attributes)
@@ -25,6 +27,18 @@ abstract class Entity
                 continue;
             }
 
+            if ($this->isTraversable($value)) {
+                $attributes[$key] = array_map(function ($row) {
+                    if ($row instanceof Entity) {
+                        return $row->toArray();
+                    }
+
+                    return $row;
+                }, $value);
+
+                continue;
+            }
+
             $attributes[$key] = $value;
         }
 
@@ -43,5 +57,10 @@ abstract class Entity
                 $this->$key = $attributes[$key];
             }
         }
+    }
+
+    protected function isTraversable($value): bool
+    {
+        return is_array($value) || $value instanceof ArrayAccess;
     }
 }
