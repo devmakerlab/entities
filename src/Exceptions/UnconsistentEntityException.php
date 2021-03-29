@@ -1,6 +1,6 @@
 <?php
 
-namespace Entities\Exceptions;
+namespace DevMakerLab\Exceptions;
 
 use Exception;
 

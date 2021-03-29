@@ -1,5 +1,5 @@
 {
-    "name": "thephplab/entities",
+    "name": "devmakerlab/entities",
     "type": "library",
     "description": "Work with entities from your services or repositories.",
     "license": "MIT",
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Entities\\": "src/"
+            "DevMakerLab\\": "src/"
         }
     },
     "require-dev": {

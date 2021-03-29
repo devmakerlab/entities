@@ -2,7 +2,7 @@
 
 namespace Tests\Artifacts;
 
-use Entities\Entity;
+use DevMakerLab\Entity;
 
 class God extends Entity
 {

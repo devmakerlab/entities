@@ -3,9 +3,9 @@
 namespace Tests;
 
 use Tests\Artifacts\SuperCat;
-use Entities\ConsistentEntity;
+use DevMakerLab\ConsistentEntity;
 use PHPUnit\Framework\TestCase;
-use Entities\Exceptions\UnconsistentEntityException;
+use DevMakerLab\Exceptions\UnconsistentEntityException;
 
 class ConsistentEntityTest extends TestCase
 {

@@ -6,7 +6,7 @@ use Tests\Artifacts\God;
 use Tests\Artifacts\Hooman;
 use Tests\Artifacts\Pantheon;
 use PHPUnit\Framework\TestCase;
-use Entities\Exceptions\UnexpectedEntityException;
+use DevMakerLab\Exceptions\UnexpectedEntityException;
 
 class ConsistentEntityListTest extends TestCase
 {

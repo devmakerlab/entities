@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Entities\Entity;
+use DevMakerLab\Entity;
 use Tests\Artifacts\Car;
 use Tests\Artifacts\Hooman;
 use PHPUnit\Framework\TestCase;

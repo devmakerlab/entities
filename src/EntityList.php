@@ -1,6 +1,6 @@
 <?php
 
-namespace Entities;
+namespace DevMakerLab;
 
 use Countable;
 use ArrayAccess;

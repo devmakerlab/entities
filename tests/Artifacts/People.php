@@ -2,7 +2,7 @@
 
 namespace Tests\Artifacts;
 
-use Entities\EntityList;
+use DevMakerLab\EntityList;
 
 class People extends EntityList
 {

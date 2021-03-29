@@ -2,7 +2,7 @@
 
 namespace Tests\Artifacts;
 
-use Entities\ConsistentEntity;
+use DevMakerLab\ConsistentEntity;
 
 class SuperCat extends ConsistentEntity
 {

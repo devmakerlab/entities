@@ -1,8 +1,8 @@
-# thephplab/entities
+# DevMakerLab - Entities
 
-[![Run tests](https://github.com/thephplab/entities/workflows/Run%20tests/badge.svg)](https://github.com/thephplab/entities/actions)
-[![Code Coverage](https://scrutinizer-ci.com/g/thephplab/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/thephplab/entities/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/thephplab/entities/v/stable)](https://packagist.org/packages/thephplab/entities)
+[![Run tests](https://github.com/devmakerlab/entities/workflows/Run%20tests/badge.svg)](https://github.com/devmakerlab/entities/actions)
+[![Code Coverage](https://scrutinizer-ci.com/g/devmakerlab/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/devmakerlab/entities/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/devmakerlab/entities/v/stable)](https://packagist.org/packages/devmakerlab/entities)
 
 This package provide a way to implements entities. Useful for your services or repositories.
 
@@ -11,7 +11,7 @@ This package provide a way to implements entities. Useful for your services or r
 Create your entity in dedicated class :
 
 ```php
-use Entities\Entity;
+use DevMakerLab\Entity;
 
 class Human extends Entity
 {
@@ -35,7 +35,7 @@ echo $human->age; // 42
 Create your entity list like this :
 
 ```php
-use Entities\EntityList;
+use DevMakerLab\EntityList;
 
 class People extends EntityList
 {

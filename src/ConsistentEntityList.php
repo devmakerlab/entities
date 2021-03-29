@@ -1,8 +1,8 @@
 <?php
 
-namespace Entities;
+namespace DevMakerLab;
 
-use Entities\Exceptions\UnexpectedEntityException;
+use DevMakerLab\Exceptions\UnexpectedEntityException;
 
 abstract class ConsistentEntityList extends EntityList
 {

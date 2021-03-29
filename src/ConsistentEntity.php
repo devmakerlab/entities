@@ -1,8 +1,8 @@
 <?php
 
-namespace Entities;
+namespace DevMakerLab;
 
-use Entities\Exceptions\UnconsistentEntityException;
+use DevMakerLab\Exceptions\UnconsistentEntityException;
 use ReflectionProperty;
 
 abstract class ConsistentEntity extends Entity

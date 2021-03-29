@@ -2,7 +2,7 @@
 
 namespace Tests\Artifacts;
 
-use Entities\ConsistentEntityList;
+use DevMakerLab\ConsistentEntityList;
 
 class Pantheon extends ConsistentEntityList
 {
