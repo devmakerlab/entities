@@ -1,7 +1,7 @@
 # DevMakerLab - Entities
 
 [![Run tests](https://github.com/devmakerlab/entities/workflows/Run%20tests/badge.svg)](https://github.com/devmakerlab/entities/actions)
-[![Code Coverage](https://scrutinizer-ci.com/g/devmakerlab/entities/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/devmakerlab/entities/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/devmakerlab/entities/badges/coverage.png?b=master&s=dd1cff48e15466abb5806c83ddccb1603814b779)](https://scrutinizer-ci.com/g/devmakerlab/entities/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/devmakerlab/entities/v/stable)](https://packagist.org/packages/devmakerlab/entities)
 
 This package provide a way to implements entities. Useful for your services or repositories.
