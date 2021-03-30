@@ -8,4 +8,5 @@ class Car extends Entity
 {
     public string $name;
     public Hooman $owner;
+    public array $colors;
 }

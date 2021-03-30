@@ -85,7 +85,7 @@ class EntityTest extends TestCase
     public function can_convert_an_entity_with_dependencies_to_array()
     {
         $jacky = new Hooman(['name' => 'Jacky', 'age' => 42]);
-        $car = new Car(['name' => 'Renault Tuning', 'owner' => $jacky]);
+        $car = new Car(['name' => 'Renault Tuning', 'owner' => $jacky, 'colors' => ['blue', 'green']]);
 
         $expected = [
             'name' => 'Renault Tuning',
@@ -93,6 +93,10 @@ class EntityTest extends TestCase
                 'name' => 'Jacky',
                 'age' => 42,
                 'country' => null,
+            ],
+            'colors' => [
+                'blue',
+                'green',
             ],
         ];
 
