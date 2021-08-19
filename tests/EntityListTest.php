@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use DevMakerLab\Entity;
 use DevMakerLab\EntityList;
 use Tests\Artifacts\Hooman;
 use Tests\Artifacts\People;
@@ -138,5 +139,39 @@ class EntityListTest extends TestCase
         $expected = '[{"name":"First","age":25,"country":null},{"name":"Second","age":12,"country":null}]';
 
         $this->assertEquals($expected, $people->toJson());
+    }
+
+    /** @test */
+    public function can_get_specific_entity_property()
+    {
+        $entities = [
+            new Hooman(['name' => 'First', 'age' => 25]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ];
+
+        $people = new People($entities);
+
+        $expected = [
+            ['name' => 'First'],
+            ['name' => 'Second'],
+        ];
+
+        $this->assertEquals($expected, $people->only('name'));
+    }
+
+    /** @test */
+    public function can_get_sort_by_entity_property()
+    {
+        $people = new People([
+            new Hooman(['name' => 'First', 'age' => 25]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ]);
+
+        $expected = new People([
+            new Hooman(['name' => 'Second', 'age' => 12]),
+            new Hooman(['name' => 'First', 'age' => 25]),
+        ]);
+
+        $this->assertEquals($expected, $people->sortBy('age'));
     }
 }
