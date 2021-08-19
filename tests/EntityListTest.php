@@ -160,7 +160,7 @@ class EntityListTest extends TestCase
     }
 
     /** @test */
-    public function can_get_sort_by_entity_property()
+    public function can_sort_by_entity_property()
     {
         $people = new People([
             new Hooman(['name' => 'First', 'age' => 25]),
