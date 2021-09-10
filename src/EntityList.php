@@ -73,4 +73,26 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     {
         return new ArrayIterator($this->entities);
     }
+    
+    public function sortBy(string $property): self
+    {
+        usort($this->entities, function($a, $b) use ($property) {
+            return $a->{$property} > $b->{$property} ? 1 : -1;
+        });
+
+        return $this;
+    }
+
+    public function only(...$keys): array
+    {
+        $items = [];
+        foreach ($this->entities as $entity) {
+            $result = array_intersect_key((array)$entity, array_flip($keys));
+            if (! empty($result)) {
+                $items[] = $result;
+            }
+        }
+
+        return $items;
+    }
 }
