@@ -174,4 +174,83 @@ class EntityListTest extends TestCase
 
         $this->assertEquals($expected, $people->sortBy('age'));
     }
+
+    /** @test */
+    public function can_filter_list_using_callback()
+    {
+        $people = new People([
+            $adult = new Hooman(['name' => 'First', 'age' => 25]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ]);
+
+        $callback = function (Hooman $entity) {
+            if ($entity->age > 21) {
+                return $entity->age;
+            }
+        };
+
+        $filteredPeople = $people->filter($callback);
+
+        $this->assertEquals($filteredPeople, [$adult]);
+    }
+
+    /** @test */
+    public function can_filter_using_key_value()
+    {
+        $adultAge = 21;
+
+        $people = new People([
+            $adult = new Hooman(['name' => 'First', 'age' => 21]),
+            new Hooman(['name' => 'Second', 'age' => 12]),
+        ]);
+
+        $filteredPeople = $people->filter('age', $adultAge);
+
+        $this->assertEquals($filteredPeople, [$adult]);
+    }
+
+    /** @test */
+    public function can_pluck_all_entity_property()
+    {
+        $firstName = 'First';
+        $secondName = 'Second';
+
+        $people = new People([
+            new Hooman(['name' => $firstName, 'age' => 25]),
+            new Hooman(['name' => $secondName, 'age' => 12]),
+        ]);
+
+        $peopleNames = $people->pluck('name');
+
+        $this->assertEquals($peopleNames, [$firstName, $secondName]);
+    }
+
+    /** @test */
+    public function can_group_by_entity_property()
+    {
+        $grandPaAge = 82;
+        $adultAge = 21;
+        $babyAge = 3;
+
+        $grandPaHooman = new Hooman(['name' => 'Adult', 'age' => $grandPaAge]);
+        $adultHooman = new Hooman(['name' => 'Adult', 'age' => $adultAge]);
+        $babyHooman = new Hooman(['name' => 'Baby', 'age' => $babyAge]);
+
+        $people = new People([
+            $grandPaHooman,
+            $adultHooman,
+            $adultHooman,
+            $babyHooman,
+        ]);
+
+        $groupedPeopleByAge = $people->groupBy('age');
+
+        $family = [
+            $grandPaAge => [$grandPaHooman],
+            $adultAge => [$adultHooman, $adultHooman],
+            $babyAge => [$babyHooman]
+        ];
+
+        $this->assertEquals($groupedPeopleByAge, $family);
+    }
 }
