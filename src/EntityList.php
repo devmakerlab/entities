@@ -2,6 +2,7 @@
 
 namespace DevMakerLab;
 
+use Closure;
 use Countable;
 use ArrayAccess;
 use ArrayIterator;
@@ -73,7 +74,7 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
     {
         return new ArrayIterator($this->entities);
     }
-    
+
     public function sortBy(string $property): self
     {
         usort($this->entities, function($a, $b) use ($property) {
@@ -94,5 +95,35 @@ abstract class EntityList implements Countable, ArrayAccess, IteratorAggregate
         }
 
         return $items;
+    }
+
+    /**
+     * @param mixed|Closure
+     * @param ?mixed $value
+     */
+    public function filter($key, $value = null): array
+    {
+        $callable = is_callable($key)
+            ? $key
+            : function (Entity $entity) use ($key, $value) {
+                return $entity->{$key} === $value;
+            };
+
+        return array_filter($this->entities, $callable);
+    }
+
+    public function pluck(string $key): array
+    {
+        return array_column($this->entities, $key);
+    }
+
+    public function groupBy(string $key): array
+    {
+        $group = [];
+        foreach ($this->entities as $entity) {
+            $group[$entity->{$key}][] = $entity;
+        }
+
+        return $group;
     }
 }
